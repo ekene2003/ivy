@@ -78,11 +78,8 @@
     .product-card-img-wrap{position:relative;overflow:hidden;flex-shrink:0}
     .product-card-img-wrap img{width:100%;height:260px;object-fit:cover;object-position:center;display:block;transition:transform .4s}
     .product-card:hover .product-card-img-wrap img{transform:scale(1.05)}
-
-    /* placeholder for extra skincare products */
     .skin-placeholder{width:100%;height:260px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;font-size:3.5rem}
     .skin-placeholder .ph-label{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--rose)}
-
     .p-badge{position:absolute;top:14px;left:14px;border-radius:50px;padding:3px 13px;font-size:.68rem;font-weight:700;letter-spacing:.05em;color:#fff;z-index:2}
     .p-badge.bestseller{background:var(--rose)}
     .p-badge.new{background:var(--gold)}
@@ -91,7 +88,6 @@
     .p-badge.bundle{background:#5b9e7e}
     .p-badge.nafdac{left:auto;right:14px;background:rgba(255,255,255,.92);color:var(--rose-deep)}
     .p-badge.skincare{background:#d4739a}
-
     .product-card-body{padding:18px 20px 22px;flex:1;display:flex;flex-direction:column}
     .p-name{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:700;color:var(--dark);margin-bottom:6px}
     .p-desc{font-size:.8rem;color:var(--muted);line-height:1.55;margin-bottom:14px;flex:1}
@@ -162,18 +158,15 @@
     .wa-float{position:fixed;bottom:24px;left:24px;z-index:9000;width:58px;height:58px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.65rem;box-shadow:0 4px 24px rgba(37,211,102,.5);text-decoration:none;transition:transform .2s}
     .wa-float:hover{transform:scale(1.1);color:#fff}
 
-    /* PRODUCT IMAGE CROPPING — WhatsApp screenshots need extra help */
-    .img-crop-brush{ object-position: center 20%; }
-    .img-crop-heels{ object-position: center 60%; }
-    .img-crop-comb { object-position: center 30%; }
-    .img-crop-straight{ object-position: center 40%; }
+    .img-crop-brush{object-position:center 20%}
+    .img-crop-heels{object-position:center 60%}
+    .img-crop-comb{object-position:center 30%}
+    .img-crop-straight{object-position:center 40%}
 
-    /* ANIMATIONS */
     @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
     .fu{animation:fadeUp .7s ease both}
     .fu1{animation-delay:.1s}.fu2{animation-delay:.22s}.fu3{animation-delay:.34s}.fu4{animation-delay:.46s}
 
-    /* RESPONSIVE */
     @media(max-width:767px){
       .hero{padding:60px 0 48px;min-height:auto}
       .hero-product-img{max-width:240px;margin-top:36px}
@@ -181,9 +174,152 @@
       .promo-banner{padding:36px 24px}
       .hero-pill.top{left:0}.hero-pill.bottom{right:0}
     }
+
+    /* ============================================================
+       PREMIUM UI UPGRADE — Animations, Glassmorphism, Micro-effects
+       ============================================================ */
+
+    /* PAGE LOADER */
+    #page-loader{position:fixed;inset:0;background:var(--dark);z-index:99997;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px;transition:opacity .7s ease,visibility .7s ease}
+    #page-loader.hidden{opacity:0;visibility:hidden;pointer-events:none}
+    .loader-logo{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:700;color:#fff;letter-spacing:.02em;animation:loaderPulse 1.5s ease-in-out infinite}
+    .loader-logo span{color:var(--gold)}
+    .loader-bar{width:160px;height:2px;background:rgba(255,255,255,.12);border-radius:99px;overflow:hidden}
+    .loader-bar-fill{height:100%;background:linear-gradient(90deg,var(--rose),var(--gold));border-radius:99px;animation:loaderFill 1.9s ease forwards}
+    @keyframes loaderPulse{0%,100%{opacity:1}50%{opacity:.4}}
+    @keyframes loaderFill{from{width:0}to{width:100%}}
+
+    /* CUSTOM CURSOR — desktop only */
+    @media(min-width:769px){
+      *,*::before,*::after{cursor:none!important}
+    }
+    #cursor{width:12px;height:12px;background:var(--rose);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:99999;transition:width .3s,height .3s,background .3s;mix-blend-mode:multiply}
+    #cursor-ring{width:38px;height:38px;border:1.5px solid var(--rose);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:99998;opacity:.6;transition:width .3s,height .3s,opacity .3s}
+    #cursor.hovered{width:20px;height:20px;background:var(--rose-deep)}
+    #cursor-ring.hovered{width:56px;height:56px;opacity:.25}
+
+    /* SCROLLBAR */
+    ::-webkit-scrollbar{width:4px}
+    ::-webkit-scrollbar-track{background:var(--cream)}
+    ::-webkit-scrollbar-thumb{background:linear-gradient(var(--rose),var(--gold));border-radius:99px}
+
+    /* TOPBAR SHIMMER */
+    .topbar{background:linear-gradient(90deg,var(--rose-deep),#7a2040,var(--rose-deep));background-size:200% auto;animation:shimmerBg 5s linear infinite;padding:9px 0;font-weight:500}
+    @keyframes shimmerBg{0%{background-position:0%}100%{background-position:200%}}
+
+    /* NAVBAR GLASS */
+    .navbar{background:rgba(253,250,247,.88)!important;backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid rgba(200,100,122,.1)!important;box-shadow:0 2px 30px rgba(160,69,96,.06);transition:all .4s cubic-bezier(.23,1,.32,1)}
+    .navbar.scrolled{background:rgba(253,250,247,.97)!important;box-shadow:0 4px 40px rgba(160,69,96,.1)}
+    .navbar-brand{position:relative;transition:all .4s ease}
+    .navbar-brand::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--rose),var(--gold));transform:scaleX(0);transition:transform .3s ease}
+    .navbar-brand:hover::after{transform:scaleX(1)}
+    .nav-link{position:relative;padding-bottom:4px!important}
+    .nav-link::after{content:'';position:absolute;bottom:0;left:50%;right:50%;height:1.5px;background:var(--rose);transition:all .3s ease;border-radius:99px}
+    .nav-link:hover::after{left:0;right:0}
+    .btn-order-nav{background:linear-gradient(135deg,var(--rose),var(--rose-deep))!important;box-shadow:0 4px 16px rgba(200,100,122,.3);overflow:hidden;position:relative}
+    .btn-order-nav::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent,rgba(255,255,255,.2),transparent);transform:translateX(-100%);transition:transform .5s ease}
+    .btn-order-nav:hover::before{transform:translateX(100%)}
+
+    /* HERO UPGRADES */
+    .hero{background:linear-gradient(140deg,#1a0e13 0%,#4a1e30 40%,#8b3a56 70%,#c8647a 100%)!important}
+    .hero::after{content:'';position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(201,169,110,.15) 0%,transparent 70%);top:-100px;right:-100px;border-radius:50%;animation:auroraFloat 8s ease-in-out infinite;pointer-events:none;z-index:1}
+    .hero .container{position:relative;z-index:2}
+    @keyframes auroraFloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(-30px,20px) scale(1.1)}66%{transform:translate(20px,-30px) scale(.9)}}
+    .hero-pill{backdrop-filter:blur(16px);background:rgba(255,255,255,.92)!important;border:1px solid rgba(255,255,255,.8);box-shadow:0 8px 32px rgba(0,0,0,.15),inset 0 1px 0 rgba(255,255,255,.9);animation:pillFloat 3s ease-in-out infinite}
+    .hero-pill.bottom{animation-delay:1.5s}
+    @keyframes pillFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+    .hero-product-img{filter:drop-shadow(0 20px 60px rgba(200,100,122,.4))}
+
+    /* TRUST STRIP */
+    .trust-strip{background:linear-gradient(135deg,#fef7f9,#fdf0f3)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.8)}
+    .trust-item{transition:all .4s cubic-bezier(.23,1,.32,1);padding:6px 12px;border-radius:50px}
+    .trust-item:hover{background:rgba(200,100,122,.06);transform:translateY(-2px)}
+
+    /* CAT PILLS */
+    .cat-pill{border:1px solid rgba(200,100,122,.1);box-shadow:0 4px 24px rgba(160,69,96,.08);overflow:hidden;position:relative}
+    .cat-pill:hover{box-shadow:0 16px 40px rgba(200,100,122,.25)!important;transform:translateY(-6px) scale(1.03)!important}
+
+    /* PRODUCT CARDS */
+    .product-card{border:1px solid rgba(200,100,122,.08)!important;box-shadow:0 4px 24px rgba(160,69,96,.08)!important;border-radius:24px!important;position:relative}
+    .product-card::before{content:'';position:absolute;top:0;left:-75%;width:50%;height:100%;background:linear-gradient(to right,transparent,rgba(255,255,255,.22),transparent);transform:skewX(-20deg);transition:left .6s ease;z-index:10;pointer-events:none}
+    .product-card:hover::before{left:125%}
+    .product-card:hover{transform:translateY(-10px) scale(1.01)!important;box-shadow:0 24px 60px rgba(160,69,96,.18)!important}
+
+    /* PROMO BANNER */
+    .promo-banner{border-radius:32px!important;padding:60px 52px!important;background:linear-gradient(140deg,#1a0e13 0%,#5a1e35 45%,#a04560 80%,#c8647a 100%)!important;box-shadow:0 32px 80px rgba(160,69,96,.25),inset 0 1px 0 rgba(255,255,255,.1)!important}
+    .promo-banner::before{content:'';position:absolute;width:300px;height:300px;background:radial-gradient(circle,rgba(201,169,110,.2),transparent);top:-80px;right:20%;border-radius:50%;animation:auroraFloat 6s ease-in-out infinite}
+    @media(max-width:767px){.promo-banner{padding:36px 24px!important}}
+
+    /* DELIVERY SECTION */
+    .delivery-section{background:linear-gradient(160deg,#1a0e13 0%,#2b1a20 60%,#3a2030 100%)!important;position:relative;overflow:hidden}
+    .delivery-section::before{content:'';position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(200,100,122,.08),transparent);top:-150px;right:-100px;border-radius:50%;pointer-events:none}
+    .d-feat{transition:all .4s cubic-bezier(.23,1,.32,1);border-radius:20px;border:1px solid transparent}
+    .d-feat:hover{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.08);transform:translateY(-4px)}
+
+    /* CTA */
+    .cta-strip{background:linear-gradient(140deg,var(--rose-pale) 0%,var(--blush) 50%,#fce0ea 100%)!important;position:relative;overflow:hidden}
+    .cta-strip::before{content:'';position:absolute;width:400px;height:400px;background:radial-gradient(circle,rgba(200,100,122,.1),transparent);top:-100px;left:-100px;border-radius:50%;animation:auroraFloat 10s ease-in-out infinite reverse}
+    .btn-call-big,.btn-wa-big{box-shadow:0 8px 28px rgba(0,0,0,.12)!important;transition:all .5s cubic-bezier(.34,1.56,.64,1)!important}
+    .btn-call-big:hover,.btn-wa-big:hover{transform:translateY(-4px) scale(1.02)!important}
+
+    /* NEWSLETTER */
+    .newsletter-section{background:linear-gradient(140deg,#7a2040 0%,var(--rose-deep) 50%,var(--rose) 100%)!important;position:relative;overflow:hidden}
+    .nl-input:focus{box-shadow:0 4px 20px rgba(200,100,122,.15),0 0 0 3px rgba(200,100,122,.1)!important}
+    .btn-nl{transition:all .5s cubic-bezier(.34,1.56,.64,1)!important}
+    .btn-nl:hover{transform:translateY(-2px) scale(1.02)!important}
+
+    /* FOOTER */
+    .footer{background:linear-gradient(160deg,#1a0e13 0%,#2b1a20 100%)!important;position:relative}
+    .footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--rose),var(--gold),transparent)}
+    .footer a{transition:all .4s cubic-bezier(.23,1,.32,1)!important}
+    .footer a:not(.s-icon):hover{padding-left:6px!important;color:#f5c6d4!important}
+    .s-icon{border:1px solid rgba(255,255,255,.06);transition:all .5s cubic-bezier(.34,1.56,.64,1)!important}
+    .s-icon:hover{transform:translateY(-3px) scale(1.1)!important;box-shadow:0 8px 20px rgba(200,100,122,.3)!important}
+
+    /* WHATSAPP FLOAT */
+    .wa-float{background:linear-gradient(135deg,#25d366,#1db954)!important;box-shadow:0 8px 32px rgba(37,211,102,.4)!important;border:2px solid rgba(255,255,255,.2);transition:all .5s cubic-bezier(.34,1.56,.64,1)!important}
+    .wa-float:hover{transform:scale(1.15) translateY(-3px)!important;box-shadow:0 16px 40px rgba(37,211,102,.5)!important}
+
+    /* SCROLL REVEAL */
+    .reveal{opacity:0;transform:translateY(40px);transition:opacity .7s cubic-bezier(.23,1,.32,1),transform .7s cubic-bezier(.23,1,.32,1)}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    .reveal-scale{opacity:0;transform:scale(.9);transition:opacity .6s ease,transform .6s cubic-bezier(.34,1.56,.64,1)}
+    .reveal-scale.visible{opacity:1;transform:scale(1)}
+    .delay-1{transition-delay:.1s!important}.delay-2{transition-delay:.2s!important}
+    .delay-3{transition-delay:.3s!important}.delay-4{transition-delay:.4s!important}
+    .delay-5{transition-delay:.5s!important}.delay-6{transition-delay:.6s!important}
+
+    /* REVIEWS */
+    .reviews-section{background:linear-gradient(160deg,#fdfaf7 0%,#fef7f9 100%)!important}
+    .review-card{background:linear-gradient(160deg,#fff 0%,#fef8fa 100%)!important;border:1px solid rgba(200,100,122,.08)!important}
+    .review-card:hover{box-shadow:0 14px 40px rgba(200,100,122,.14)!important;transform:translateY(-6px)!important}
+
+    /* MISSION/VISION CARDS */
+    .mission-card{transition:all .4s cubic-bezier(.23,1,.32,1)}
+    .mission-card:hover{transform:translateY(-4px);box-shadow:0 20px 60px rgba(200,100,122,.14)!important}
+
+    /* ABOUT TIMELINE HOVER */
+    .timeline-item{transition:all .4s cubic-bezier(.23,1,.32,1)}
+    .timeline-item:hover{background:rgba(255,255,255,.1)!important;transform:translateX(6px)}
+
+    /* WHY CHOOSE US CARDS */
+    .why-card{transition:all .4s cubic-bezier(.23,1,.32,1)!important}
+    .why-card:hover{box-shadow:0 24px 60px rgba(160,69,96,.18)!important;transform:translateY(-4px);border-color:rgba(200,100,122,.15)!important}
+
+    @keyframes rippleAnim{to{width:200px;height:200px;left:calc(50% - 100px);top:calc(50% - 100px);opacity:0}}
   </style>
 </head>
 <body>
+
+<!-- PAGE LOADER -->
+<div id="page-loader">
+  <div class="loader-logo">Ivy<span>Dealz</span></div>
+  <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+</div>
+
+<!-- CUSTOM CURSOR -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
 
 <!-- TOPBAR -->
 <div class="topbar">
@@ -236,7 +372,6 @@
         <div class="hero-img-wrap">
           <div class="hero-img-glow"></div>
           <img src="./images/beauty-rejuvenation-concept-pretty-korean-woman-makes-peace-hand-gesture-keeps-lips-folded-has-eye-patches-face-wears-purple-bath-hat-enjoys-spa-procedures-after-taking-shower.jpg" alt="Electric Hair Comb" class="hero-product-img img-crop-comb" style="height:380px"/>
-          
           <div class="hero-pill bottom"><i class="bi bi-truck-front-fill" style="color:var(--rose)"></i> Nationwide Delivery</div>
         </div>
       </div>
@@ -268,14 +403,13 @@
       <div class="col-6 col-sm-4 col-md-2"><div class="cat-pill"><i class="bi bi-droplet-half"></i><div class="cat-label">Infection Cures</div></div></div>
       <div class="col-6 col-sm-4 col-md-2"><div class="cat-pill"><i class="bi bi-wind"></i><div class="cat-label">Hair Care</div></div></div>
       <div class="col-6 col-sm-4 col-md-2"><div class="cat-pill"><i class="bi bi-brilliance"></i><div class="cat-label">Skincare</div></div></div>
-      
       <div class="col-6 col-sm-4 col-md-2"><div class="cat-pill"><i class="bi bi-heart-pulse-fill"></i><div class="cat-label">Wellness</div></div></div>
       <div class="col-6 col-sm-4 col-md-2"><div class="cat-pill"><i class="bi bi-gift-fill"></i><div class="cat-label">Bundle Deals</div></div></div>
     </div>
   </div>
 </section>
 
-<!-- ===================== PRODUCTS — YOUR ITEMS ===================== -->
+<!-- PRODUCTS -->
 <section class="py-5" style="background:var(--rose-pale)" id="products">
   <div class="container">
     <div class="text-center mb-5">
@@ -285,7 +419,6 @@
     </div>
     <div class="row g-4">
 
-      <!-- 1 — Electric Hair Straightening Comb -->
       <div class="col-sm-6 col-lg-3">
         <div class="product-card position-relative">
           <span class="p-badge bestseller">Best Seller</span>
@@ -303,7 +436,6 @@
         </div>
       </div>
 
-      <!-- 2 — Silicone Scalp Shampoo Brush -->
       <div class="col-sm-6 col-lg-3">
         <div class="product-card position-relative">
           <span class="p-badge new">New Arrival</span>
@@ -321,7 +453,6 @@
         </div>
       </div>
 
-      <!-- 3 — Electric Hair Straightener (wired) -->
       <div class="col-sm-6 col-lg-3">
         <div class="product-card position-relative">
           <span class="p-badge trending">Trending</span>
@@ -339,7 +470,6 @@
         </div>
       </div>
 
-      <!-- 4 — Anti-Slip Heel Pads -->
       <div class="col-sm-6 col-lg-3">
         <div class="product-card position-relative">
           <span class="p-badge deal">Hot Deal</span>
@@ -357,12 +487,11 @@
         </div>
       </div>
 
-     
     </div>
   </div>
 </section>
 
-<!-- ===================== SKINCARE PRODUCTS ===================== -->
+<!-- SKINCARE -->
 <section class="py-5" id="skincare">
   <div class="container">
     <div class="text-center mb-5">
@@ -372,7 +501,6 @@
     </div>
     <div class="row g-4">
 
-      <!-- Vitamin C Serum -->
       <div class="col-sm-6 col-lg-3">
         <div class="product-card position-relative">
           <span class="p-badge skincare">Skincare</span>
@@ -390,11 +518,10 @@
         </div>
       </div>
 
-      <!-- Gluta Lotion -->
       <div class="col-sm-6 col-lg-3">
         <div class="product-card position-relative">
           <span class="p-badge skincare">Skincare</span>
-               <div class="product-card-img-wrap">
+          <div class="product-card-img-wrap">
             <img src="./images/1_49_524dd378-7a8d-42c3-972a-c0e5cc1d6c32.webp" alt="Anti-Slip Heel Shoe Pads" class="img-crop-heels" style="height:280px;object-fit:cover;object-position:center 70%;width:100%;background:#fdf0e8"/>
           </div>
           <div class="product-card-body">
@@ -408,11 +535,10 @@
         </div>
       </div>
 
-      <!-- Face Wash -->
       <div class="col-sm-6 col-lg-3">
         <div class="product-card position-relative">
           <span class="p-badge skincare">Skincare</span>
-            <div class="product-card-img-wrap">
+          <div class="product-card-img-wrap">
             <img src="./images/images (1).jfif" alt="Anti-Slip Heel Shoe Pads" class="img-crop-heels" style="height:280px;object-fit:cover;object-position:center 70%;width:100%;background:#fdf0e8"/>
           </div>
           <div class="product-card-body">
@@ -426,11 +552,10 @@
         </div>
       </div>
 
-      <!-- Sunscreen SPF50 -->
       <div class="col-sm-6 col-lg-3">
         <div class="product-card position-relative">
           <span class="p-badge new">New</span>
-      <div class="product-card-img-wrap">
+          <div class="product-card-img-wrap">
             <img src="./images/download.jfif" alt="Anti-Slip Heel Shoe Pads" class="img-crop-heels" style="height:280px;object-fit:cover;object-position:center 70%;width:100%;background:#fdf0e8"/>
           </div>
           <div class="product-card-body">
@@ -444,11 +569,10 @@
         </div>
       </div>
 
-      <!-- Retinol Night Cream -->
       <div class="col-sm-6 col-lg-3">
         <div class="product-card position-relative">
           <span class="p-badge skincare">Skincare</span>
-            <div class="product-card-img-wrap">
+          <div class="product-card-img-wrap">
             <img src="./images/download (1).jfif" alt="Anti-Slip Heel Shoe Pads" class="img-crop-heels" style="height:280px;object-fit:cover;object-position:center 70%;width:100%;background:#fdf0e8"/>
           </div>
           <div class="product-card-body">
@@ -462,11 +586,10 @@
         </div>
       </div>
 
-      <!-- Eye Cream -->
       <div class="col-sm-6 col-lg-3">
         <div class="product-card position-relative">
           <span class="p-badge deal">Hot Deal</span>
-             <div class="product-card-img-wrap">
+          <div class="product-card-img-wrap">
             <img src="./images/shopping.webp" alt="Anti-Slip Heel Shoe Pads" class="img-crop-heels" style="height:280px;object-fit:cover;object-position:center 70%;width:100%;background:#fdf0e8"/>
           </div>
           <div class="product-card-body">
@@ -480,11 +603,10 @@
         </div>
       </div>
 
-      <!-- Hyaluronic Acid Toner -->
       <div class="col-sm-6 col-lg-3">
         <div class="product-card position-relative">
           <span class="p-badge skincare">Skincare</span>
-           <div class="product-card-img-wrap">
+          <div class="product-card-img-wrap">
             <img src="./images/1 (1).jpg" alt="Anti-Slip Heel Shoe Pads" class="img-crop-heels" style="height:280px;object-fit:cover;object-position:center 70%;width:100%;background:#fdf0e8"/>
           </div>
           <div class="product-card-body">
@@ -498,11 +620,10 @@
         </div>
       </div>
 
-      <!-- Skincare Routine Bundle -->
       <div class="col-sm-6 col-lg-3">
         <div class="product-card position-relative">
           <span class="p-badge bundle">Bundle</span>
-              <div class="product-card-img-wrap">
+          <div class="product-card-img-wrap">
             <img src="./images/download (2).jfif" alt="glow skincare bundle" class="img-crop-heels" style="height:280px;object-fit:cover;object-position:center 70%;width:100%;background:#fdf0e8"/>
           </div>
           <div class="product-card-body">
@@ -530,22 +651,16 @@
           <h2 class="text-white fw-bold mt-2">Get 30% Off Your First Order!</h2>
           <p class="text-white mb-0">Mention code <strong>IVYFIRST</strong> when you call or WhatsApp us. Valid on all products. Free delivery on orders above &#x20A6;25,000.</p>
         </div>
-        <!-- <div class="col-lg-5 d-flex flex-column gap-2 align-items-lg-end">
-          <a href="tel:+2348158909730" class="btn-primary-rose"><i class="bi bi-telephone-fill"></i> Call to Order</a>
-          <a href="https://wa.me/2348158909730?text=Hi%2C%20I%20want%20to%20use%20code%20IVYFIRST!" target="_blank" class="btn-outline-white"><i class="bi bi-whatsapp"></i> Chat on WhatsApp</a>
-        </div> -->
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===================== ABOUT US ===================== -->
+<!-- ABOUT US -->
 <section id="about" style="background:var(--cream)">
 
-  <!-- HERO BANNER -->
   <div style="background:linear-gradient(135deg,#2b1a20 0%,#6b2d44 50%,#c8647a 100%);padding:80px 0;position:relative;overflow:hidden">
     <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(201,169,110,.15) 0%,transparent 60%)"></div>
-    <!-- decorative petals -->
     <div style="position:absolute;width:220px;height:220px;border-radius:50% 0 50% 0;background:#fff;opacity:.05;top:-40px;right:8%;animation:drift 9s ease-in-out infinite"></div>
     <div style="position:absolute;width:120px;height:120px;border-radius:50% 0 50% 0;background:#fff;opacity:.05;bottom:20px;left:12%;animation:drift 12s ease-in-out infinite reverse"></div>
     <div class="container text-center" style="position:relative;z-index:2">
@@ -555,11 +670,9 @@
     </div>
   </div>
 
-  <!-- STORY SECTION -->
   <div class="container py-5">
     <div class="row align-items-center gy-5 py-3">
       <div class="col-lg-6">
-        <!-- Visual collage / brand graphic -->
         <div style="position:relative;padding:20px">
           <div style="background:linear-gradient(135deg,var(--rose-pale),var(--blush));border-radius:28px;padding:48px 40px;text-align:center;position:relative;overflow:hidden">
             <div style="position:absolute;top:-30px;right:-30px;width:160px;height:160px;background:var(--rose);opacity:.08;border-radius:50%"></div>
@@ -567,7 +680,6 @@
             <div style="font-size:4.5rem;margin-bottom:16px">&#127800;</div>
             <div style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;color:var(--rose-deep);margin-bottom:8px">IvyDealz</div>
             <div style="font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:28px">Lagos, Nigeria · Est. 2022</div>
-            <!-- mini stats row -->
             <div style="display:flex;justify-content:center;gap:0;border-top:1px solid #f0d0d8;padding-top:24px;flex-wrap:wrap">
               <div style="flex:1;min-width:80px;text-align:center;padding:0 12px;border-right:1px solid #f0d0d8">
                 <div style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700;color:var(--rose-deep);line-height:1">1700+</div>
@@ -583,13 +695,11 @@
               </div>
             </div>
           </div>
-          <!-- floating badge -->
           <div style="position:absolute;bottom:10px;right:8px;background:#fff;border-radius:16px;padding:12px 18px;box-shadow:0 8px 28px rgba(200,100,122,.18);font-size:.75rem;font-weight:600;color:var(--rose-deep);display:flex;align-items:center;gap:8px">
             <i class="bi bi-patch-check-fill text-success"></i> NAFDAC Certified
           </div>
         </div>
       </div>
-
       <div class="col-lg-6">
         <span class="eyebrow">Our Story</span>
         <h3 style="font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:700;margin:12px 0 20px;line-height:1.2">From a Simple Dream to Nigeria's Trusted Wellness Brand</h3>
@@ -604,7 +714,6 @@
     </div>
   </div>
 
-  <!-- MISSION & VISION -->
   <div style="background:var(--rose-pale);padding:60px 0">
     <div class="container">
       <div class="text-center mb-5">
@@ -613,7 +722,7 @@
       </div>
       <div class="row g-4">
         <div class="col-md-6">
-          <div style="background:#fff;border-radius:24px;padding:36px;height:100%;border:1px solid #f0d8de;position:relative;overflow:hidden">
+          <div class="mission-card" style="background:#fff;border-radius:24px;padding:36px;height:100%;border:1px solid #f0d8de;position:relative;overflow:hidden">
             <div style="position:absolute;top:-20px;right:-20px;width:120px;height:120px;background:var(--rose);opacity:.06;border-radius:50%"></div>
             <div style="width:58px;height:58px;background:var(--blush);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:20px">
               <i class="bi bi-bullseye" style="font-size:1.5rem;color:var(--rose)"></i>
@@ -623,7 +732,7 @@
           </div>
         </div>
         <div class="col-md-6">
-          <div style="background:#fff;border-radius:24px;padding:36px;height:100%;border:1px solid #f0d8de;position:relative;overflow:hidden">
+          <div class="mission-card" style="background:#fff;border-radius:24px;padding:36px;height:100%;border:1px solid #f0d8de;position:relative;overflow:hidden">
             <div style="position:absolute;top:-20px;right:-20px;width:120px;height:120px;background:var(--gold);opacity:.08;border-radius:50%"></div>
             <div style="width:58px;height:58px;background:var(--gold-pale);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:20px">
               <i class="bi bi-eye-fill" style="font-size:1.5rem;color:var(--gold)"></i>
@@ -636,7 +745,6 @@
     </div>
   </div>
 
-  <!-- CORE VALUES -->
   <div class="container py-5">
     <div class="text-center mb-5">
       <span class="eyebrow">What We Stand For</span>
@@ -644,7 +752,6 @@
       <p class="text-muted">The principles that guide everything we do at IvyDealz</p>
     </div>
     <div class="row g-4">
-
       <div class="col-sm-6 col-lg-3">
         <div style="text-align:center;padding:32px 20px;border-radius:22px;border:1px solid #f0e4e8;height:100%;background:#fff;transition:transform .3s,box-shadow .3s" onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 16px 40px rgba(200,100,122,.12)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
           <div style="width:70px;height:70px;background:var(--rose-pale);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px">
@@ -654,7 +761,6 @@
           <p style="font-size:.83rem;color:var(--muted);line-height:1.7;margin:0">Every product we sell is genuine, tested and verified. No fakes, no shortcuts. Your trust is our most valuable asset.</p>
         </div>
       </div>
-
       <div class="col-sm-6 col-lg-3">
         <div style="text-align:center;padding:32px 20px;border-radius:22px;border:1px solid #f0e4e8;height:100%;background:#fff;transition:transform .3s,box-shadow .3s" onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 16px 40px rgba(200,100,122,.12)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
           <div style="width:70px;height:70px;background:var(--gold-pale);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px">
@@ -664,7 +770,6 @@
           <p style="font-size:.83rem;color:var(--muted);line-height:1.7;margin:0">We listen, we care and we go the extra mile. From your first order to your tenth, your satisfaction is always our priority.</p>
         </div>
       </div>
-
       <div class="col-sm-6 col-lg-3">
         <div style="text-align:center;padding:32px 20px;border-radius:22px;border:1px solid #f0e4e8;height:100%;background:#fff;transition:transform .3s,box-shadow .3s" onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 16px 40px rgba(200,100,122,.12)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
           <div style="width:70px;height:70px;background:#e8f5e9;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px">
@@ -674,7 +779,6 @@
           <p style="font-size:.83rem;color:var(--muted);line-height:1.7;margin:0">We prioritise products made from natural, safe ingredients. Our herbal range is NAFDAC certified because your health is non-negotiable.</p>
         </div>
       </div>
-
       <div class="col-sm-6 col-lg-3">
         <div style="text-align:center;padding:32px 20px;border-radius:22px;border:1px solid #f0e4e8;height:100%;background:#fff;transition:transform .3s,box-shadow .3s" onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 16px 40px rgba(200,100,122,.12)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
           <div style="width:70px;height:70px;background:#e3f2fd;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px">
@@ -684,11 +788,9 @@
           <p style="font-size:.83rem;color:var(--muted);line-height:1.7;margin:0">From Lagos to Sokoto, Calabar to Kano we ship nationwide. Fast, affordable and tracked delivery you can count on.</p>
         </div>
       </div>
-
     </div>
   </div>
 
-  <!-- OUR JOURNEY TIMELINE -->
   <div style="background:var(--dark);padding:70px 0">
     <div class="container">
       <div class="text-center mb-5">
@@ -698,34 +800,30 @@
       </div>
       <div class="row justify-content-center">
         <div class="col-lg-8">
-          <!-- timeline item -->
           <div style="display:flex;gap:24px;margin-bottom:40px;align-items:flex-start">
             <div style="flex-shrink:0;width:54px;height:54px;background:var(--rose);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1rem;box-shadow:0 0 0 5px rgba(200,100,122,.2)">2022</div>
-            <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:24px;flex:1">
+            <div class="timeline-item" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:24px;flex:1">
               <h5 style="color:#fff;font-family:'Cormorant Garamond',serif;font-size:1.25rem;margin-bottom:8px">&#127800; IvyDealz is Born</h5>
               <p style="color:rgba(255,255,255,.6);font-size:.85rem;line-height:1.7;margin:0">Founded in Lagos with a handful of NAFDAC-approved herbal products and a passion to serve Nigerians. Our first 50 orders were delivered personally within Lagos Island.</p>
             </div>
           </div>
-          <!-- timeline item -->
           <div style="display:flex;gap:24px;margin-bottom:40px;align-items:flex-start">
             <div style="flex-shrink:0;width:54px;height:54px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1rem;box-shadow:0 0 0 5px rgba(201,169,110,.2)">2023</div>
-            <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:24px;flex:1">
+            <div class="timeline-item" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:24px;flex:1">
               <h5 style="color:#fff;font-family:'Cormorant Garamond',serif;font-size:1.25rem;margin-bottom:8px">&#128230; Going Nationwide</h5>
               <p style="color:rgba(255,255,255,.6);font-size:.85rem;line-height:1.7;margin:0">Expanded delivery to all 36 states. Launched hair care gadgets including the electric comb and scalp brush. Crossed 500 satisfied customers and received our first wave of viral reviews.</p>
             </div>
           </div>
-          <!-- timeline item -->
           <div style="display:flex;gap:24px;margin-bottom:40px;align-items:flex-start">
             <div style="flex-shrink:0;width:54px;height:54px;background:#6a5acd;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1rem;box-shadow:0 0 0 5px rgba(106,90,205,.2)">2024</div>
-            <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:24px;flex:1">
+            <div class="timeline-item" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:24px;flex:1">
               <h5 style="color:#fff;font-family:'Cormorant Garamond',serif;font-size:1.25rem;margin-bottom:8px">&#10024; Skincare Line Launched</h5>
               <p style="color:rgba(255,255,255,.6);font-size:.85rem;line-height:1.7;margin:0">Introduced our premium skincare range — serums, toners, sunscreens and night creams. Customer base surpassed 1,000 and average rating held strong at 4.9 stars.</p>
             </div>
           </div>
-          <!-- timeline item -->
           <div style="display:flex;gap:24px;align-items:flex-start">
             <div style="flex-shrink:0;width:54px;height:54px;background:linear-gradient(135deg,var(--rose),var(--rose-deep));border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Cormorant Garamond',serif;font-weight:700;font-size:.9rem;box-shadow:0 0 0 5px rgba(200,100,122,.25)">2025+</div>
-            <div style="background:linear-gradient(135deg,rgba(200,100,122,.12),rgba(201,169,110,.08));border:1px solid rgba(200,100,122,.25);border-radius:18px;padding:24px;flex:1">
+            <div class="timeline-item" style="background:linear-gradient(135deg,rgba(200,100,122,.12),rgba(201,169,110,.08));border:1px solid rgba(200,100,122,.25);border-radius:18px;padding:24px;flex:1">
               <h5 style="color:#f5c6d4;font-family:'Cormorant Garamond',serif;font-size:1.25rem;margin-bottom:8px">&#127919; Growing Stronger</h5>
               <p style="color:rgba(255,255,255,.6);font-size:.85rem;line-height:1.7;margin:0">Now serving 1,700+ customers. Expanding product lines, improving delivery speed, and building toward becoming West Africa's most trusted wellness and skincare destination. Our journey is just beginning.</p>
             </div>
@@ -735,7 +833,6 @@
     </div>
   </div>
 
-  <!-- WHY CHOOSE US — FEATURES GRID -->
   <div class="container py-5">
     <div class="text-center mb-5">
       <span class="eyebrow">Why Choose Us</span>
@@ -743,46 +840,15 @@
       <p class="text-muted">Here's what sets us apart from the rest</p>
     </div>
     <div class="row g-4 align-items-stretch">
-      <div class="col-md-6 col-lg-4">
-        <div style="display:flex;gap:18px;padding:24px;background:#fff;border-radius:20px;border:1px solid #f0e4e8;height:100%">
-          <div style="flex-shrink:0;width:50px;height:50px;background:var(--rose-pale);border-radius:14px;display:flex;align-items:center;justify-content:center"><i class="bi bi-patch-check-fill" style="color:var(--rose);font-size:1.2rem"></i></div>
-          <div><div style="font-weight:600;margin-bottom:5px">NAFDAC Approved</div><div style="font-size:.82rem;color:var(--muted);line-height:1.6">Our herbal products are certified by Nigeria's food and drug authority — so you know exactly what you're getting.</div></div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <div style="display:flex;gap:18px;padding:24px;background:#fff;border-radius:20px;border:1px solid #f0e4e8;height:100%">
-          <div style="flex-shrink:0;width:50px;height:50px;background:var(--gold-pale);border-radius:14px;display:flex;align-items:center;justify-content:center"><i class="bi bi-currency-exchange" style="color:var(--gold);font-size:1.2rem"></i></div>
-          <div><div style="font-weight:600;margin-bottom:5px">Affordable Prices</div><div style="font-size:.82rem;color:var(--muted);line-height:1.6">We cut out middlemen to offer you premium quality at the fairest prices. Great products shouldn't cost a fortune.</div></div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <div style="display:flex;gap:18px;padding:24px;background:#fff;border-radius:20px;border:1px solid #f0e4e8;height:100%">
-          <div style="flex-shrink:0;width:50px;height:50px;background:#e8f5e9;border-radius:14px;display:flex;align-items:center;justify-content:center"><i class="bi bi-truck-front-fill" style="color:#4caf6e;font-size:1.2rem"></i></div>
-          <div><div style="font-weight:600;margin-bottom:5px">Fast Nationwide Delivery</div><div style="font-size:.82rem;color:var(--muted);line-height:1.6">Wherever you are in Nigeria, we reach you. 2–5 business days to your doorstep, with real-time order tracking.</div></div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <div style="display:flex;gap:18px;padding:24px;background:#fff;border-radius:20px;border:1px solid #f0e4e8;height:100%">
-          <div style="flex-shrink:0;width:50px;height:50px;background:#e3f2fd;border-radius:14px;display:flex;align-items:center;justify-content:center"><i class="bi bi-whatsapp" style="color:#25d366;font-size:1.2rem"></i></div>
-          <div><div style="font-weight:600;margin-bottom:5px">Easy WhatsApp Ordering</div><div style="font-size:.82rem;color:var(--muted);line-height:1.6">No complicated websites or apps. Just WhatsApp us, tell us what you want, and we handle the rest.</div></div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <div style="display:flex;gap:18px;padding:24px;background:#fff;border-radius:20px;border:1px solid #f0e4e8;height:100%">
-          <div style="flex-shrink:0;width:50px;height:50px;background:#f3e5f5;border-radius:14px;display:flex;align-items:center;justify-content:center"><i class="bi bi-star-fill" style="color:#9c27b0;font-size:1.2rem"></i></div>
-          <div><div style="font-weight:600;margin-bottom:5px">4.9&#9733; Rated</div><div style="font-size:.82rem;color:var(--muted);line-height:1.6">Over 1,700 verified reviews. Our customers keep coming back — and they keep sending their friends and family too.</div></div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <div style="display:flex;gap:18px;padding:24px;background:#fff;border-radius:20px;border:1px solid #f0e4e8;height:100%">
-          <div style="flex-shrink:0;width:50px;height:50px;background:var(--rose-pale);border-radius:14px;display:flex;align-items:center;justify-content:center"><i class="bi bi-arrow-repeat" style="color:var(--rose);font-size:1.2rem"></i></div>
-          <div><div style="font-weight:600;margin-bottom:5px">Hassle-Free Returns</div><div style="font-size:.82rem;color:var(--muted);line-height:1.6">Not satisfied? We'll sort it out. Your peace of mind matters more to us than any single sale.</div></div>
-        </div>
-      </div>
+      <div class="col-md-6 col-lg-4"><div class="why-card" style="display:flex;gap:18px;padding:24px;background:#fff;border-radius:20px;border:1px solid #f0e4e8;height:100%"><div style="flex-shrink:0;width:50px;height:50px;background:var(--rose-pale);border-radius:14px;display:flex;align-items:center;justify-content:center"><i class="bi bi-patch-check-fill" style="color:var(--rose);font-size:1.2rem"></i></div><div><div style="font-weight:600;margin-bottom:5px">NAFDAC Approved</div><div style="font-size:.82rem;color:var(--muted);line-height:1.6">Our herbal products are certified by Nigeria's food and drug authority — so you know exactly what you're getting.</div></div></div></div>
+      <div class="col-md-6 col-lg-4"><div class="why-card" style="display:flex;gap:18px;padding:24px;background:#fff;border-radius:20px;border:1px solid #f0e4e8;height:100%"><div style="flex-shrink:0;width:50px;height:50px;background:var(--gold-pale);border-radius:14px;display:flex;align-items:center;justify-content:center"><i class="bi bi-currency-exchange" style="color:var(--gold);font-size:1.2rem"></i></div><div><div style="font-weight:600;margin-bottom:5px">Affordable Prices</div><div style="font-size:.82rem;color:var(--muted);line-height:1.6">We cut out middlemen to offer you premium quality at the fairest prices. Great products shouldn't cost a fortune.</div></div></div></div>
+      <div class="col-md-6 col-lg-4"><div class="why-card" style="display:flex;gap:18px;padding:24px;background:#fff;border-radius:20px;border:1px solid #f0e4e8;height:100%"><div style="flex-shrink:0;width:50px;height:50px;background:#e8f5e9;border-radius:14px;display:flex;align-items:center;justify-content:center"><i class="bi bi-truck-front-fill" style="color:#4caf6e;font-size:1.2rem"></i></div><div><div style="font-weight:600;margin-bottom:5px">Fast Nationwide Delivery</div><div style="font-size:.82rem;color:var(--muted);line-height:1.6">Wherever you are in Nigeria, we reach you. 2–5 business days to your doorstep, with real-time order tracking.</div></div></div></div>
+      <div class="col-md-6 col-lg-4"><div class="why-card" style="display:flex;gap:18px;padding:24px;background:#fff;border-radius:20px;border:1px solid #f0e4e8;height:100%"><div style="flex-shrink:0;width:50px;height:50px;background:#e3f2fd;border-radius:14px;display:flex;align-items:center;justify-content:center"><i class="bi bi-whatsapp" style="color:#25d366;font-size:1.2rem"></i></div><div><div style="font-weight:600;margin-bottom:5px">Easy WhatsApp Ordering</div><div style="font-size:.82rem;color:var(--muted);line-height:1.6">No complicated websites or apps. Just WhatsApp us, tell us what you want, and we handle the rest.</div></div></div></div>
+      <div class="col-md-6 col-lg-4"><div class="why-card" style="display:flex;gap:18px;padding:24px;background:#fff;border-radius:20px;border:1px solid #f0e4e8;height:100%"><div style="flex-shrink:0;width:50px;height:50px;background:#f3e5f5;border-radius:14px;display:flex;align-items:center;justify-content:center"><i class="bi bi-star-fill" style="color:#9c27b0;font-size:1.2rem"></i></div><div><div style="font-weight:600;margin-bottom:5px">4.9&#9733; Rated</div><div style="font-size:.82rem;color:var(--muted);line-height:1.6">Over 1,700 verified reviews. Our customers keep coming back — and they keep sending their friends and family too.</div></div></div></div>
+      <div class="col-md-6 col-lg-4"><div class="why-card" style="display:flex;gap:18px;padding:24px;background:#fff;border-radius:20px;border:1px solid #f0e4e8;height:100%"><div style="flex-shrink:0;width:50px;height:50px;background:var(--rose-pale);border-radius:14px;display:flex;align-items:center;justify-content:center"><i class="bi bi-arrow-repeat" style="color:var(--rose);font-size:1.2rem"></i></div><div><div style="font-weight:600;margin-bottom:5px">Hassle-Free Returns</div><div style="font-size:.82rem;color:var(--muted);line-height:1.6">Not satisfied? We'll sort it out. Your peace of mind matters more to us than any single sale.</div></div></div></div>
     </div>
   </div>
 
-  <!-- FINAL CTA INSIDE ABOUT -->
   <div style="background:linear-gradient(135deg,var(--rose-pale),var(--blush));padding:60px 0">
     <div class="container text-center">
       <div style="font-size:3rem;margin-bottom:14px">&#127800;</div>
@@ -816,67 +882,36 @@
       </div>
     </div>
     <div class="row g-4">
-
       <div class="col-md-6 col-lg-4"><div class="review-card">
         <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <p class="review-text">"The electric hair comb is incredible! My hair is naturally thick and it used to take me 30 minutes to straighten. With this IvyDealz comb, I'm done in 10 minutes and my hair looks salon-smooth. Worth every kobo!"</p>
-        <div class="review-author">
-          <div class="r-avatar" style="background:var(--rose)">TA</div>
-          <div><div class="r-name">Tola Adeyemi</div><div class="r-location"><i class="bi bi-geo-alt-fill me-1"></i>Lagos, Nigeria</div></div>
-          <div class="r-verified"><i class="bi bi-check-circle-fill"></i> Verified</div>
-        </div>
+        <div class="review-author"><div class="r-avatar" style="background:var(--rose)">TA</div><div><div class="r-name">Tola Adeyemi</div><div class="r-location"><i class="bi bi-geo-alt-fill me-1"></i>Lagos, Nigeria</div></div><div class="r-verified"><i class="bi bi-check-circle-fill"></i> Verified</div></div>
       </div></div>
-
       <div class="col-md-6 col-lg-4"><div class="review-card">
         <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <p class="review-text">"The Vitamin C serum and glow lotion together are a game changer! My skin tone has evened out and I get so many compliments. I've been using IvyDealz skincare for 3 months and I won't go back."</p>
-        <div class="review-author">
-          <div class="r-avatar" style="background:var(--gold)">FO</div>
-          <div><div class="r-name">Funmi Okafor</div><div class="r-location"><i class="bi bi-geo-alt-fill me-1"></i>Abuja, Nigeria</div></div>
-          <div class="r-verified"><i class="bi bi-check-circle-fill"></i> Verified</div>
-        </div>
+        <div class="review-author"><div class="r-avatar" style="background:var(--gold)">FO</div><div><div class="r-name">Funmi Okafor</div><div class="r-location"><i class="bi bi-geo-alt-fill me-1"></i>Abuja, Nigeria</div></div><div class="r-verified"><i class="bi bi-check-circle-fill"></i> Verified</div></div>
       </div></div>
-
       <div class="col-md-6 col-lg-4"><div class="review-card">
         <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <p class="review-text">"I had been struggling with a chronic infection for over a year. After using Ivy Plus for just 3 weeks, the symptoms completely cleared. Totally worth every naira and I've recommended it to my whole family!"</p>
-        <div class="review-author">
-          <div class="r-avatar" style="background:#6a5acd">AA</div>
-          <div><div class="r-name">Adaeze Anozie</div><div class="r-location"><i class="bi bi-geo-alt-fill me-1"></i>Enugu, Nigeria</div></div>
-          <div class="r-verified"><i class="bi bi-check-circle-fill"></i> Verified</div>
-        </div>
+        <div class="review-author"><div class="r-avatar" style="background:#6a5acd">AA</div><div><div class="r-name">Adaeze Anozie</div><div class="r-location"><i class="bi bi-geo-alt-fill me-1"></i>Enugu, Nigeria</div></div><div class="r-verified"><i class="bi bi-check-circle-fill"></i> Verified</div></div>
       </div></div>
-
       <div class="col-md-6 col-lg-4"><div class="review-card">
         <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <p class="review-text">"The anti-slip heel pads are a lifesaver! I wear heels every day for work and the blisters were terrible. Since I got these from IvyDealz, no more slipping, no more pain. I've ordered 5 sets already!"</p>
-        <div class="review-author">
-          <div class="r-avatar" style="background:#b06ab3">NE</div>
-          <div><div class="r-name">Ngozi Eze</div><div class="r-location"><i class="bi bi-geo-alt-fill me-1"></i>Port Harcourt, Nigeria</div></div>
-          <div class="r-verified"><i class="bi bi-check-circle-fill"></i> Verified</div>
-        </div>
+        <div class="review-author"><div class="r-avatar" style="background:#b06ab3">NE</div><div><div class="r-name">Ngozi Eze</div><div class="r-location"><i class="bi bi-geo-alt-fill me-1"></i>Port Harcourt, Nigeria</div></div><div class="r-verified"><i class="bi bi-check-circle-fill"></i> Verified</div></div>
       </div></div>
-
       <div class="col-md-6 col-lg-4"><div class="review-card">
         <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <p class="review-text">"The scalp shampoo brush is amazing! My scalp was itchy and dry but after 2 weeks of use it's completely normal. My hair also feels so much thicker. Fast delivery to Ibadan in 2 days!"</p>
-        <div class="review-author">
-          <div class="r-avatar" style="background:#e07f55">KA</div>
-          <div><div class="r-name">Kemi Adesanya</div><div class="r-location"><i class="bi bi-geo-alt-fill me-1"></i>Ibadan, Nigeria</div></div>
-          <div class="r-verified"><i class="bi bi-check-circle-fill"></i> Verified</div>
-        </div>
+        <div class="review-author"><div class="r-avatar" style="background:#e07f55">KA</div><div><div class="r-name">Kemi Adesanya</div><div class="r-location"><i class="bi bi-geo-alt-fill me-1"></i>Ibadan, Nigeria</div></div><div class="r-verified"><i class="bi bi-check-circle-fill"></i> Verified</div></div>
       </div></div>
-
       <div class="col-md-6 col-lg-4"><div class="review-card">
         <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <p class="review-text">"Ordered the complete glow skincare bundle and the value is unbelievable! The face wash, serum and toner all work perfectly together. My skin is literally glowing now. IvyDealz has the best products!"</p>
-        <div class="review-author">
-          <div class="r-avatar" style="background:#5b9e7e">BI</div>
-          <div><div class="r-name">Blessing Ikenna</div><div class="r-location"><i class="bi bi-geo-alt-fill me-1"></i>Kano, Nigeria</div></div>
-          <div class="r-verified"><i class="bi bi-check-circle-fill"></i> Verified</div>
-        </div>
+        <div class="review-author"><div class="r-avatar" style="background:#5b9e7e">BI</div><div><div class="r-name">Blessing Ikenna</div><div class="r-location"><i class="bi bi-geo-alt-fill me-1"></i>Kano, Nigeria</div></div><div class="r-verified"><i class="bi bi-check-circle-fill"></i> Verified</div></div>
       </div></div>
-
     </div>
     <div class="text-center mt-5">
       <a href="https://wa.me/2348158909730?text=Hi%20IvyDealz%2C%20I%20want%20to%20leave%20a%20review!" target="_blank" class="btn-primary-rose" style="display:inline-flex"><i class="bi bi-chat-heart-fill"></i> Leave a Review on WhatsApp</a>
@@ -941,7 +976,6 @@
       <div class="col-lg-4 col-md-6">
         <div class="footer-logo mb-3">Ivy<span>Dealz</span></div>
         <p style="font-size:.85rem;line-height:1.75;max-width:270px">Your trusted wellness &amp; skincare partner in Nigeria. Premium products delivered nationwide from Lagos.</p>
-    
       </div>
       <div class="col-lg-2 col-md-6 col-6">
         <h6>Shop</h6>
@@ -988,12 +1022,125 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-  document.querySelectorAll('a[href^="#"]').forEach(a=>{
-    a.addEventListener('click',e=>{
-      const t=document.querySelector(a.getAttribute('href'));
-      if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}
-    });
+// PAGE LOADER
+window.addEventListener('load',()=>{
+  setTimeout(()=>{
+    const l=document.getElementById('page-loader');
+    if(l){l.classList.add('hidden');setTimeout(()=>l.remove(),800);}
+  },1900);
+});
+
+// CUSTOM CURSOR
+const cur=document.getElementById('cursor'),ring=document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  cur.style.transform=`translate(${mx-6}px,${my-6}px)`;
+});
+(function animRing(){
+  rx+=(mx-rx-19)*.12; ry+=(my-ry-19)*.12;
+  ring.style.transform=`translate(${rx}px,${ry}px)`;
+  requestAnimationFrame(animRing);
+})();
+document.querySelectorAll('a,button,.cat-pill,.product-card,.review-card,.mission-card,.why-card,.nav-link').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.classList.add('hovered');ring.classList.add('hovered');});
+  el.addEventListener('mouseleave',()=>{cur.classList.remove('hovered');ring.classList.remove('hovered');});
+});
+
+// NAVBAR SCROLL
+const nav=document.querySelector('.navbar');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60));
+
+// SCROLL REVEAL
+const revObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const d=+(e.target.dataset.delay||0);
+      setTimeout(()=>e.target.classList.add('visible'),d*120);
+      revObs.unobserve(e.target);
+    }
   });
+},{threshold:.1});
+
+document.querySelectorAll('.product-card').forEach((el,i)=>{el.classList.add('reveal');el.dataset.delay=i%4;revObs.observe(el);});
+document.querySelectorAll('.review-card').forEach((el,i)=>{el.classList.add('reveal');el.dataset.delay=i%3;revObs.observe(el);});
+document.querySelectorAll('.cat-pill').forEach((el,i)=>{el.classList.add('reveal-scale');el.dataset.delay=i;revObs.observe(el);});
+document.querySelectorAll('.trust-item,.d-feat,.mission-card,.why-card').forEach((el,i)=>{el.classList.add('reveal');el.dataset.delay=i%4;revObs.observe(el);});
+
+// ANIMATED COUNTERS
+const cntObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting)return;
+    const el=e.target,txt=el.textContent.trim();
+    let target=0,suffix='';
+    if(txt.includes('1700')){target=1700;suffix='+';}
+    else if(txt==='36'){target=36;}
+    else if(txt.includes('5+')){el.textContent='5+';cntObs.unobserve(el);return;}
+    else if(txt.includes('12+')){el.textContent='12+';cntObs.unobserve(el);return;}
+    else if(txt.includes('4.9')){el.textContent='4.9★';cntObs.unobserve(el);return;}
+    if(!target){return;}
+    let start=null;
+    (function step(ts){
+      if(!start)start=ts;
+      const p=Math.min((ts-start)/2000,1);
+      el.textContent=Math.floor((1-Math.pow(1-p,3))*target)+suffix;
+      if(p<1)requestAnimationFrame(step);
+    })(performance.now());
+    cntObs.unobserve(el);
+  });
+},{threshold:.5});
+document.querySelectorAll('.stat-num').forEach(el=>cntObs.observe(el));
+
+// MAGNETIC BUTTONS
+document.querySelectorAll('.btn-primary-rose,.btn-order-nav,.btn-call-big,.btn-wa-big').forEach(btn=>{
+  btn.addEventListener('mousemove',e=>{
+    const r=btn.getBoundingClientRect();
+    const x=(e.clientX-r.left-r.width/2)*0.18;
+    const y=(e.clientY-r.top-r.height/2)*0.18;
+    btn.style.transform=`translate(${x}px,${y}px) translateY(-3px)`;
+  });
+  btn.addEventListener('mouseleave',()=>btn.style.transform='');
+});
+
+// RIPPLE
+document.querySelectorAll('.btn-call-product,.btn-wa-product').forEach(btn=>{
+  btn.addEventListener('click',e=>{
+    const r=btn.getBoundingClientRect();
+    const s=document.createElement('span');
+    s.style.cssText=`position:absolute;border-radius:50%;background:rgba(255,255,255,.3);width:10px;height:10px;pointer-events:none;left:${e.clientX-r.left-5}px;top:${e.clientY-r.top-5}px;animation:rippleAnim .6s ease forwards;`;
+    btn.appendChild(s);setTimeout(()=>s.remove(),700);
+  });
+});
+
+// CARD TILT
+document.querySelectorAll('.product-card').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-.5;
+    const y=(e.clientY-r.top)/r.height-.5;
+    card.style.transform=`translateY(-10px) scale(1.01) rotateY(${x*5}deg) rotateX(${-y*5}deg)`;
+    card.style.transition='transform .1s ease';
+  });
+  card.addEventListener('mouseleave',()=>{
+    card.style.transform='';
+    card.style.transition='all .4s cubic-bezier(.23,1,.32,1)';
+  });
+});
+
+// PARALLAX HERO IMG
+window.addEventListener('scroll',()=>{
+  const img=document.querySelector('.hero-product-img');
+  if(img&&window.scrollY<window.innerHeight)
+    img.style.transform=`translateY(${window.scrollY*.06}px)`;
+});
+
+// SMOOTH SCROLL
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}
+  });
+});
 </script>
 </body>
 </html>
